@@ -7,6 +7,7 @@ import { terser } from "rollup-plugin-terser";
 import config from "sapper/config/rollup.js";
 import pkg from "./package.json";
 import alias from "@rollup/plugin-alias";
+import sapperEnv from "sapper-environment";
 
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
@@ -33,6 +34,10 @@ const aliases = {
     {
       find: "@components",
       replacement: path.resolve(projectRootDir, "src/components")
+    },
+    {
+      find: "@api",
+      replacement: path.resolve(projectRootDir, "src/api")
     }
   ]
 };
@@ -44,6 +49,7 @@ export default {
     plugins: [
       alias(aliases),
       replace({
+        ...sapperEnv(),
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode)
       }),
@@ -56,8 +62,14 @@ export default {
         browser: true,
         dedupe: ["svelte"]
       }),
-      commonjs(),
-
+      commonjs({
+        namedExports: {
+          "node_modules/firebase/dist/index.cjs.js": [
+            "initializeApp",
+            "firestore"
+          ]
+        }
+      }),
       legacy &&
         babel({
           extensions: [".js", ".mjs", ".html", ".svelte"],

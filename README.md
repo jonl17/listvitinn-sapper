@@ -1,1 +1,5 @@
-todo...
+- [x] nav
+- [x] firebase
+- [x] contentful
+- [ ] frontpage
+- [ ] dotenv

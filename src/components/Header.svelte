@@ -43,7 +43,7 @@
     width: 0%;
     transition: 0.2s ease-in-out;
     pointer-events: none;
-    border-bottom: 2px solid;
+    border-bottom: 1px solid;
     top: 0;
     left: 0;
   }

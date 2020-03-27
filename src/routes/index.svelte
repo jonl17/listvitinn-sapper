@@ -3,5 +3,5 @@
 </script>
 
 <svelte:head>
-  <title>yoyo</title>
+  <title>Listvitinn</title>
 </svelte:head>
