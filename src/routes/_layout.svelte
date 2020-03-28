@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import Header from "@components/Header.svelte";
+  import Wrap from "@components/Wrap.svelte";
   import { config } from "@shared/firebaseConfig";
 
   export let segment;

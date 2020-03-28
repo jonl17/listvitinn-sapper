@@ -4,7 +4,7 @@
 
   let syningarstadir = [];
   onMount(() => {
-    getAllEntries("stadir", "fields.title").then(
+    getAllEntries({ content_type: "stadir", order: "fields.title" }).then(
       data => (syningarstadir = data)
     );
   });

@@ -15,9 +15,9 @@ export const getEntryById = id => {
     });
 };
 
-export const getAllEntries = (contentTypeId, order) =>
+export const getAllEntries = params =>
   init()
-    .getEntries({ content_type: contentTypeId, order: order })
+    .getEntries(params)
     .then(entries => {
       return entries.items;
     })

@@ -4,7 +4,9 @@
 
   let listamenn = [];
   onMount(() => {
-    getAllEntries("artist", "fields.nafn").then(data => (listamenn = data));
+    getAllEntries({ content_type: "artist", order: "fields.nafn" }).then(
+      data => (listamenn = data)
+    );
   });
 </script>
 

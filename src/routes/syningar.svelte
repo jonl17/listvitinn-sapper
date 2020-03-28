@@ -4,7 +4,9 @@
 
   let syningar = [];
   onMount(() => {
-    getAllEntries("exhibition", "fields.title").then(data => (syningar = data));
+    getAllEntries({ content_type: "exhibition", order: "fields.title" }).then(
+      data => (syningar = data)
+    );
   });
 </script>
 
