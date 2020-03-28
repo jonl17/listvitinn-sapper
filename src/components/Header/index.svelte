@@ -1,6 +1,9 @@
 <script>
   import { stores } from "@sapper/app";
 
+  // components
+  import Title from "./title.svelte";
+
   const { page } = stores();
 
   let currentPath = $page.path;
@@ -31,9 +34,7 @@
     display: flex;
     justify-content: space-between;
   }
-  a {
-    text-decoration: none;
-  }
+
   p {
     position: relative;
   }
@@ -43,26 +44,24 @@
     width: 0%;
     transition: 0.2s ease-in-out;
     pointer-events: none;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid gold;
     top: 0;
     left: 0;
   }
   .selected {
     width: 100% !important;
   }
-  h1 {
-    margin: 0;
+  a {
+    text-decoration: none;
   }
 </style>
 
 <nav>
-  <h1>
-    <a href="/">Listvitinn</a>
-  </h1>
+  <Title />
   <div class="anchor-wrap">
     {#each pages as page}
       <p>
-        <a href={page.slug}>{page.name}</a>
+        <a rel="prefetch" href={page.slug}>{page.name}</a>
         <span class:selected={currentPath === page.slug} id="underline" />
       </p>
     {/each}

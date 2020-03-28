@@ -1,10 +1,12 @@
 <script>
   import { onMount } from "svelte";
   import { getAllEntries } from "@api/contentful";
-  import { filterEntries } from "@shared/methods";
 
   // components
+  import ItemWrap from "./itemWrap.svelte";
   import Image from "./image.svelte";
+  import FilterTitle from "./filterTitle.svelte";
+  import Info from "./info.svelte";
 
   export let filter;
   let syningar = [];
@@ -45,29 +47,23 @@
     grid-gap: 75px;
     position: relative;
     max-width: 25%;
-    box-sizing: border-box;
-    padding: 15px;
+
+    /* border-right: 1px solid lightgray;
+    padding-right: 2.5%; */
   }
   div::-webkit-scrollbar {
     display: none;
   }
-  p {
-    position: fixed;
-    margin-left: -75px;
-    margin-top: 40px;
-    width: 100px;
-    transform: rotate(-90deg);
-    text-align: right;
-  }
 </style>
 
 <div id="scroll-wrap">
-  <p>{filter}</p>
+  <FilterTitle title={filter} />
   {#each syningar as syning}
     {#if syning}
-      <div>
+      <ItemWrap>
         <Image image={syning.fields.mynd} />
-      </div>
+        <Info title={syning.fields.title} />
+      </ItemWrap>
     {/if}
   {/each}
 </div>

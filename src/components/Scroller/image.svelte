@@ -11,6 +11,9 @@
     width: 100%;
     object-fit: cover;
   }
+  img:hover {
+    cursor: pointer;
+  }
 </style>
 
 <img {src} {alt} />

@@ -15,9 +15,9 @@ export const getEntryById = id => {
     });
 };
 
-export const getAllEntries = params =>
+export const getAllEntries = query =>
   init()
-    .getEntries(params)
+    .getEntries(query)
     .then(entries => {
       return entries.items;
     })
