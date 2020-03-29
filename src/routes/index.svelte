@@ -1,8 +1,17 @@
 <script>
   import Scroller from "@components/Scroller/index.svelte";
   import { onMount } from "svelte";
+  import { getFilteredSyningar } from "@api/contentful";
+  import { filteredSyningar } from "@stores";
+  import { generateSyningarQueryParam } from "@shared/methods";
 
-  let filters = ["opna bráðum", "opnar", "afstaðnar"];
+  onMount(() => {
+    for (let item of filteredSyningar) {
+      let query = generateSyningarQueryParam(item.filter);
+      getFilteredSyningar(query).then(data => item.syningar.set(data));
+      console.log(item);
+    }
+  });
 </script>
 
 <style>
@@ -33,11 +42,9 @@
 <div id="outer-wrap">
   <div id="inner-wrap">
 
-    <Scroller filter="opna bráðum" />
-
-    <Scroller filter="opnar" />
-
-    <Scroller filter="afstaðnar" />
+    {#each filteredSyningar as item}
+      <Scroller {item} />
+    {/each}
 
   </div>
 </div>

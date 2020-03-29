@@ -1,12 +1,12 @@
 <script>
   import { onMount } from "svelte";
-  import { getAllEntries } from "@api/contentful.js";
+  import { getAllSyningar } from "@api/contentful.js";
+  import { syningar } from "@stores";
 
-  let syningar = [];
   onMount(() => {
-    getAllEntries({ content_type: "exhibition", order: "fields.title" }).then(
-      data => (syningar = data)
-    );
+    getAllSyningar().then(data => {
+      syningar.set(data);
+    });
   });
 </script>
 
@@ -15,6 +15,6 @@
 
 </svelte:head>
 
-{#each syningar as syning}
+{#each $syningar as syning}
   <p>{syning.fields.title}</p>
 {/each}

@@ -1,12 +1,10 @@
 <script>
   import { onMount } from "svelte";
-  import { getAllEntries } from "@api/contentful";
+  import { getAllSyningarStadir } from "@api/contentful";
+  import { syningarstadir } from "@stores";
 
-  let syningarstadir = [];
   onMount(() => {
-    getAllEntries({ content_type: "stadir", order: "fields.title" }).then(
-      data => (syningarstadir = data)
-    );
+    getAllSyningarStadir().then(data => syningarstadir.set(data));
   });
 </script>
 
@@ -14,6 +12,6 @@
   <title>Listvitinn | Sýningarstaðir</title>
 </svelte:head>
 
-{#each syningarstadir as syningarstadur}
+{#each $syningarstadir as syningarstadur}
   <p>{syningarstadur.fields.title}</p>
 {/each}

@@ -15,11 +15,46 @@ export const getEntryById = id => {
     });
 };
 
-export const getAllEntries = query =>
+export const getFilteredSyningar = query =>
   init()
     .getEntries(query)
     .then(entries => {
       return entries.items;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+
+export const sync = () =>
+  init()
+    .sync({ initial: true })
+    .then(resp => {
+      console.log(resp);
+    });
+
+export const getAllListamenn = () =>
+  init()
+    .getEntries({ content_type: "artist" })
+    .then(resp => {
+      return resp.items;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+export const getAllSyningar = () =>
+  init()
+    .getEntries({ content_type: "exhibition" })
+    .then(resp => {
+      return resp.items;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+export const getAllSyningarStadir = () =>
+  init()
+    .getEntries({ content_type: "stadir" })
+    .then(resp => {
+      return resp.items;
     })
     .catch(err => {
       console.log(err.message);
