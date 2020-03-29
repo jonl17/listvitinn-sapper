@@ -1,13 +1,15 @@
-export const init = () =>
-  contentful.createClient({
+export const init = () => {
+  return contentful.createClient({
     space: "fm69pggybjik",
     accessToken: "86ZP4e_5JYBXFr8CB44Yxje1SWnXJND-kkYobVhHzcU"
   });
+};
 
-export const getEntryById = id => {
-  init()
+export const getEntryById = async id => {
+  await init()
     .getEntry(id)
     .then(entry => {
+      console.log(entry);
       return entry;
     })
     .catch(err => {

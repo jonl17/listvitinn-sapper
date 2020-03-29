@@ -1,6 +1,7 @@
 - [x] nav
 - [x] firebase
 - [x] contentful
+- [ ] syningar undirsíður
 - [ ] frontpage
   - [ ] Scroller
     - [x] optimize scaling
